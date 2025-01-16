@@ -18,7 +18,7 @@ const HomePage = () => {
           <a href="#contact">Contact</a>
         </div>
       </nav>
-
+      
       {/* Hero Section */}
       <header className="hero-section">
         <h1>Plan Your Next Adventure</h1>

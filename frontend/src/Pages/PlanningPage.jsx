@@ -1,41 +1,83 @@
-
 import React, { useState } from "react";
+import axios from "axios";
+import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
+import "./PlanningPage.css";
 
 const PlanningPage = () => {
   // State to store the source, destination, and places to visit
-
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
   const [places, setPlaces] = useState([]);
   const [newPlace, setNewPlace] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  const navigate = useNavigate();
+
+  // geo code api for places suggestion
+  const geocodeApiKey = "178534141383445268092x66016"; // Replace with your actual API key
+
 
   // Handle changes in the source, destination, and new place input fields
-
   const handleSourceChange = (e) => {
     setSource(e.target.value);
-  }
+  };
   const handleDestinationChange = (e) => {
     setDestination(e.target.value);
-  }
-  const handleNewPlaceChange = (e) => {
-    setNewPlace(e.target.value);
-  }
+  };
 
-  // Add the new place to the list of places
-  const addPlace = () => {
-    if (newPlace.trim()) {
-      setPlaces([...places, newPlace]);
+  const handleNewPlaceChange = async (e) => {
+    const inputValue = e.target.value;
+    setNewPlace(inputValue);
+
+    if (inputValue.length > 2) {
+      try {
+        const response = await axios.get(
+          `https://geocode.xyz/${inputValue}?json=1&key=${geocodeApiKey}`
+        );
+
+        // Check for matches and handle empty responses
+        if (response.data && response.data.matches && response.data.matches.length > 0) {
+          const filteredSuggestions = response.data.matches.map((match) => match.formatted);
+          setSuggestions(filteredSuggestions);
+        } else {
+          setSuggestions([]); // Clear if no matches are found
+        }
+      } catch (error) {
+        console.error("Error fetching places:", error);
+        setSuggestions([]); // Clear suggestions on error
+      }
+    } else {
+      setSuggestions([]); // Clear suggestions if input is too short
+    }
+  };
+
+  // Add the new place to the list of places, avoiding duplicates
+  const addPlace = (place) => {
+    if (place && !places.includes(place)) {
+      setPlaces((prevPlaces) => [...prevPlaces, place]);
       setNewPlace(""); // Clear the input after adding the place
+      setSuggestions([]); // Clear the suggestions
     }
   };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Log or process the form data
+
+    if(!source || !destination || places == 0){
+        alert("Please fill in all field are required and add atleast one place to visit .")
+        return;
+    }
     console.log("Source:", source);
     console.log("Destination:", destination);
     console.log("Places to Visit:", places);
+
+
+    navigate("/location",{
+        state:{source,destination,places},
+    });
   };
 
   return (
@@ -74,9 +116,20 @@ const PlanningPage = () => {
               id="newPlace"
               value={newPlace}
               onChange={handleNewPlaceChange}
-              placeholder="Enter place (e.g., Eiffel Tower)"
+              placeholder="Start typing a place (e.g., Eiffel Tower)"
             />
-            <button type="button" onClick={addPlace} className="add-place-btn">
+            <ul className="suggestions-list">
+              {suggestions.map((place, index) => (
+                <li
+                  key={index}
+                  onClick={() => addPlace(place)} // Use addPlace to add the clicked suggestion
+                  className="suggestion-item"
+                >
+                  {place}
+                </li>
+              ))}
+            </ul>
+            <button type="button" onClick={() => addPlace(newPlace)} className="add-place-btn">
               Add Place
             </button>
           </div>
@@ -86,7 +139,6 @@ const PlanningPage = () => {
             ))}
           </ul>
         </div>
-
         <button type="submit" className="submit-btn">
           Submit Plan
         </button>

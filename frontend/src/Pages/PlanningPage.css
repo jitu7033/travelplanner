@@ -1,0 +1,105 @@
+/* src/PlanningPage.css */
+
+.planning-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .planning-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 0.8rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-place-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .add-place-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .places-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .places-list li {
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .suggestion-item {
+    padding: 0.7rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .submit-btn {
+    background-color: #2ecc71;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #27ae60;
+  }
+  

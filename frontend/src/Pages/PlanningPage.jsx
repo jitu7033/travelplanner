@@ -1,83 +1,49 @@
-import React, { useState } from "react";
-import axios from "axios";
-import {Link} from "react-router-dom"
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { StandaloneSearchBox } from "@react-google-maps/api";
 import "./PlanningPage.css";
 
 const PlanningPage = () => {
-  // State to store the source, destination, and places to visit
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
   const [places, setPlaces] = useState([]);
   const [newPlace, setNewPlace] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
+  const searchBoxRef = useRef(null);
   const navigate = useNavigate();
 
-  // geo code api for places suggestion
-  const geocodeApiKey = "178534141383445268092x66016"; // Replace with your actual API key
-
-
-  // Handle changes in the source, destination, and new place input fields
   const handleSourceChange = (e) => {
     setSource(e.target.value);
   };
+
   const handleDestinationChange = (e) => {
     setDestination(e.target.value);
   };
 
-  const handleNewPlaceChange = async (e) => {
-    const inputValue = e.target.value;
-    setNewPlace(inputValue);
-
-    if (inputValue.length > 2) {
-      try {
-        const response = await axios.get(
-          `https://geocode.xyz/${inputValue}?json=1&key=${geocodeApiKey}`
-        );
-
-        // Check for matches and handle empty responses
-        if (response.data && response.data.matches && response.data.matches.length > 0) {
-          const filteredSuggestions = response.data.matches.map((match) => match.formatted);
-          setSuggestions(filteredSuggestions);
-        } else {
-          setSuggestions([]); // Clear if no matches are found
-        }
-      } catch (error) {
-        console.error("Error fetching places:", error);
-        setSuggestions([]); // Clear suggestions on error
-      }
-    } else {
-      setSuggestions([]); // Clear suggestions if input is too short
-    }
+  const handleNewPlaceChange = (e) => {
+    setNewPlace(e.target.value);
   };
 
-  // Add the new place to the list of places, avoiding duplicates
   const addPlace = (place) => {
     if (place && !places.includes(place)) {
       setPlaces((prevPlaces) => [...prevPlaces, place]);
-      setNewPlace(""); // Clear the input after adding the place
-      setSuggestions([]); // Clear the suggestions
+      setNewPlace("");
+      setSuggestions([]);
     }
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if(!source || !destination || places == 0){
-        alert("Please fill in all field are required and add atleast one place to visit .")
-        return;
+    if (!source || !destination || places.length === 0) {
+      alert("Please fill in all fields and add at least one place to visit.");
+      return;
     }
-    console.log("Source:", source);
-    console.log("Destination:", destination);
-    console.log("Places to Visit:", places);
-
-
-    navigate("/location",{
-        state:{source,destination,places},
+    navigate("/location", {
+      state: { source, destination, places },
     });
+    console.log("sources: ", source);
+    console.log("destination : ", destination);
+    console.log("places : ", places);
   };
 
   return (
@@ -86,52 +52,85 @@ const PlanningPage = () => {
       <form onSubmit={handleSubmit} className="planning-form">
         <div className="form-group">
           <label htmlFor="source">Source</label>
-          <input
-            type="text"
-            id="source"
-            value={source}
-            onChange={handleSourceChange}
-            placeholder="Enter source (e.g., New York)"
-            required
-          />
+          <StandaloneSearchBox
+            onLoad={(ref) => (searchBoxRef.current = ref)}
+            onPlacesChanged={() => {
+              const places = searchBoxRef.current.getPlaces();
+              if (places && places.length > 0) {
+                setSource(places[0].formatted_address);
+              }
+            }}
+          >
+            <input
+              type="text"
+              id="source"
+              value={source}
+              onChange={handleSourceChange}
+              placeholder="Enter source (e.g., New York)"
+              required
+            />
+          </StandaloneSearchBox>
         </div>
 
         <div className="form-group">
           <label htmlFor="destination">Destination</label>
-          <input
-            type="text"
-            id="destination"
-            value={destination}
-            onChange={handleDestinationChange}
-            placeholder="Enter destination (e.g., Paris)"
-            required
-          />
+          <StandaloneSearchBox
+            onLoad={(ref) => (searchBoxRef.current = ref)}
+            onPlacesChanged={() => {
+              const places = searchBoxRef.current.getPlaces();
+              if (places && places.length > 0) {
+                setDestination(places[0].formatted_address);
+              }
+            }}
+          >
+            <input
+              type="text"
+              id="destination"
+              value={destination}
+              onChange={handleDestinationChange}
+              placeholder="Enter destination (e.g., Paris)"
+              required
+            />
+          </StandaloneSearchBox>
         </div>
 
         <div className="form-group">
           <label htmlFor="places">Places to Visit</label>
           <div className="places-container">
-            <input
-              type="text"
-              id="newPlace"
-              value={newPlace}
-              onChange={handleNewPlaceChange}
-              placeholder="Start typing a place (e.g., Eiffel Tower)"
-            />
+            <StandaloneSearchBox
+              onLoad={(ref) => (searchBoxRef.current = ref)}
+              onPlacesChanged={() => {
+                const places = searchBoxRef.current.getPlaces();
+                if (places && places.length > 0) {
+                  const placeName = places[0].formatted_address;
+                  if (!suggestions.includes(placeName)) {
+                    setSuggestions((prevSuggestions) => [
+                      ...prevSuggestions,
+                      placeName,
+                    ]);
+                  }
+                }
+              }}
+            >
+              <input
+                type="text"
+                id="newPlace"
+                value={newPlace}
+                onChange={handleNewPlaceChange}
+                placeholder="Start typing a place (e.g., Eiffel Tower)"
+              />
+            </StandaloneSearchBox>
             <ul className="suggestions-list">
               {suggestions.map((place, index) => (
                 <li
                   key={index}
-                  onClick={() => addPlace(place)} // Use addPlace to add the clicked suggestion
+                  onClick={() => addPlace(place)}
                   className="suggestion-item"
                 >
                   {place}
                 </li>
               ))}
             </ul>
-            <button type="button" onClick={() => addPlace(newPlace)} className="add-place-btn">
-              Add Place
-            </button>
           </div>
           <ul className="places-list">
             {places.map((place, index) => (

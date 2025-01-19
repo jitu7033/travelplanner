@@ -9,16 +9,10 @@ const PlanningPage = () => {
   const [places, setPlaces] = useState([]);
   const [newPlace, setNewPlace] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const searchBoxRef = useRef(null);
+  const sourceRef = useRef(null);
+  const destinationRef = useRef(null);
+  const newPlaceRef = useRef(null);
   const navigate = useNavigate();
-
-  const handleSourceChange = (e) => {
-    setSource(e.target.value);
-  };
-
-  const handleDestinationChange = (e) => {
-    setDestination(e.target.value);
-  };
 
   const handleNewPlaceChange = (e) => {
     setNewPlace(e.target.value);
@@ -32,18 +26,26 @@ const PlanningPage = () => {
     }
   };
 
+  // remove places 
+
+  const removePlaces = (placeRemove) =>{
+    setPlaces((prevPlaces) => prevPlaces.filter((place)=> place !== placeRemove));
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!source || !destination || places.length === 0) {
       alert("Please fill in all fields and add at least one place to visit.");
       return;
     }
-    navigate("/location", {
-      state: { source, destination, places },
-    });
-    console.log("sources: ", source);
-    console.log("destination : ", destination);
-    console.log("places : ", places);
+
+    const locations = [source, ...places, destination];
+    if (locations.some((loc) => !loc || loc.trim() === "")) {
+      alert("Please ensure all locations are valid.");
+      return;
+    }
+
+    navigate("/graph", { state: { locations } });
   };
 
   return (
@@ -53,9 +55,9 @@ const PlanningPage = () => {
         <div className="form-group">
           <label htmlFor="source">Source</label>
           <StandaloneSearchBox
-            onLoad={(ref) => (searchBoxRef.current = ref)}
+            onLoad={(ref) => (sourceRef.current = ref)}
             onPlacesChanged={() => {
-              const places = searchBoxRef.current.getPlaces();
+              const places = sourceRef.current.getPlaces();
               if (places && places.length > 0) {
                 setSource(places[0].formatted_address);
               }
@@ -65,7 +67,7 @@ const PlanningPage = () => {
               type="text"
               id="source"
               value={source}
-              onChange={handleSourceChange}
+              onChange={(e) => setSource(e.target.value)} // Add onChange handler
               placeholder="Enter source (e.g., New York)"
               required
             />
@@ -75,9 +77,9 @@ const PlanningPage = () => {
         <div className="form-group">
           <label htmlFor="destination">Destination</label>
           <StandaloneSearchBox
-            onLoad={(ref) => (searchBoxRef.current = ref)}
+            onLoad={(ref) => (destinationRef.current = ref)}
             onPlacesChanged={() => {
-              const places = searchBoxRef.current.getPlaces();
+              const places = destinationRef.current.getPlaces();
               if (places && places.length > 0) {
                 setDestination(places[0].formatted_address);
               }
@@ -87,7 +89,7 @@ const PlanningPage = () => {
               type="text"
               id="destination"
               value={destination}
-              onChange={handleDestinationChange}
+              onChange={(e) => setDestination(e.target.value)} // Add onChange handler
               placeholder="Enter destination (e.g., Paris)"
               required
             />
@@ -98,9 +100,9 @@ const PlanningPage = () => {
           <label htmlFor="places">Places to Visit</label>
           <div className="places-container">
             <StandaloneSearchBox
-              onLoad={(ref) => (searchBoxRef.current = ref)}
+              onLoad={(ref) => (newPlaceRef.current = ref)}
               onPlacesChanged={() => {
-                const places = searchBoxRef.current.getPlaces();
+                const places = newPlaceRef.current.getPlaces();
                 if (places && places.length > 0) {
                   const placeName = places[0].formatted_address;
                   if (!suggestions.includes(placeName)) {
@@ -116,7 +118,7 @@ const PlanningPage = () => {
                 type="text"
                 id="newPlace"
                 value={newPlace}
-                onChange={handleNewPlaceChange}
+                onChange={handleNewPlaceChange} // Add onChange handler
                 placeholder="Start typing a place (e.g., Eiffel Tower)"
               />
             </StandaloneSearchBox>

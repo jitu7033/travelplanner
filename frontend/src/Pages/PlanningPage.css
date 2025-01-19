@@ -9,6 +9,24 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
+.graph-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.graph-table th,
+.graph-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.graph-table th {
+  background-color: #f4f4f4;
+}
+
+
 h1 {
   text-align: center;
   margin-bottom: 2rem;

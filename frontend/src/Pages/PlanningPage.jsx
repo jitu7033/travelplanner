@@ -28,9 +28,10 @@ const PlanningPage = () => {
 
   // remove places 
 
-  const removePlaces = (placeRemove) =>{
-    setPlaces((prevPlaces) => prevPlaces.filter((place)=> place !== placeRemove));
-  }
+  const removePlace = (placeToRemove) => {
+    setPlaces((prevPlaces) => prevPlaces.filter((place) => place !== placeToRemove));
+  };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -136,7 +137,17 @@ const PlanningPage = () => {
           </div>
           <ul className="places-list">
             {places.map((place, index) => (
-              <li key={index}>{place}</li>
+              <li key={index}>{place}
+            <button
+            type="button"
+            onClick={() => removePlace(place)}
+            className="remove-btn"
+          >
+            Remove
+          </button>
+              
+              </li>
+              
             ))}
           </ul>
         </div>

@@ -133,3 +133,17 @@ input {
 .submit-btn:hover {
   background-color: #27ae60;
 }
+
+
+.remove-btn {
+  margin-left: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.remove-btn:hover {
+  background-color: darkred;
+}

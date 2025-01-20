@@ -5,6 +5,7 @@ import PlanningPage from './Pages/PlanningPage.jsx'
 import LocationPage from './Pages/LocationPage.jsx';
 import HomePage from './Pages/HomePage.jsx'
 import GraphPage from './Pages/GraphPage.jsx';
+import TSPPage from './Pages/TSPPage.jsx';
 const googleApiKey = ""; // Replace with your actual API key
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="plan" element={<PlanningPage />} />
           <Route path="/location" element={<LocationPage />} />
           <Route path="/graph" element={<GraphPage />} />
+          <Route path="/tsp" element={<TSPPage/>}/>
         </Routes>
       </Router>
     </LoadScript>

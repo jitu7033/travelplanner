@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
 const GraphPage = () => {
   const { state } = useLocation();
+
+  const navigate = useNavigate();
   const locations = state?.locations
   ||  [
   "New Delhi, India",
@@ -16,10 +18,11 @@ const GraphPage = () => {
   "Jaipur, Rajasthan, India",
   "Chandigarh, India"] // Use these temporary locations if state is null
 
+  
   console.log(locations);
   const [distances, setDistances] = useState([]);
   
-  console.log(locations);
+  // console.log(locations);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "", // Replace with your actual API key
@@ -97,6 +100,13 @@ const GraphPage = () => {
       });
   };
 
+  // go to tsp page 
+  const goToTSPPage = () =>{
+    navigate("/tsp",{state:{locations,distanceMatrix:distances}})
+  };
+
+
+
   return (
     <div>
       <h1>Graph of Locations with Distances</h1>
@@ -125,6 +135,7 @@ const GraphPage = () => {
           ))}
         </tbody>
       </table>
+      <button onClick={goToTSPPage}>generate Path</button>
     </div>
   );
 };

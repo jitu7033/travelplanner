@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
+import "./GraphPage.css"
 const GraphPage = () => {
   const { state } = useLocation();
 
@@ -25,7 +26,7 @@ const GraphPage = () => {
   // console.log(locations);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "", // Replace with your actual API key
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY , // Replace with your actual API key
     libraries: ["places"],
   });
   
@@ -34,6 +35,7 @@ const GraphPage = () => {
       fetchDistances();
     }
   }, [isLoaded, locations]);
+
 
   const fetchDistances = () => {
     const service = new google.maps.DistanceMatrixService();
@@ -79,7 +81,6 @@ const GraphPage = () => {
         );
       });
     });
-
     Promise.all(requests)
       .then((results) => {
         const distanceMatrix = Array(locations.length)

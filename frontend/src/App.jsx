@@ -6,7 +6,7 @@ import LocationPage from './Pages/LocationPage.jsx';
 import HomePage from './Pages/HomePage.jsx'
 import GraphPage from './Pages/GraphPage.jsx';
 import TSPPage from './Pages/TSPPage.jsx';
-const googleApiKey = ""; // Replace with your actual API key
+const googleApiKey = import.meta.env.VITE_GOOGLE_PLACES_API_KEY; // Replace with your actual API key
 
 const App = () => {
   return (

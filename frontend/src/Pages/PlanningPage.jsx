@@ -26,8 +26,8 @@ const PlanningPage = () => {
     }
   };
 
+  
   // remove places 
-
   const removePlace = (placeToRemove) => {
     setPlaces((prevPlaces) => prevPlaces.filter((place) => place !== placeToRemove));
   };

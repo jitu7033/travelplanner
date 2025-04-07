@@ -1,0 +1,44 @@
+/* Existing styles remain unchanged, add these at the end */
+
+.add-hotel-form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.add-hotel-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 200px;
+}
+
+.add-hotel-form input[type="number"] {
+  width: 100px;
+}
+
+.add-hotel-form input[type="file"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.image-preview {
+  margin-top: 0.5rem;
+}
+
+.add-hotel-button {
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-hotel-button:hover {
+  background-color: #218838;
+}

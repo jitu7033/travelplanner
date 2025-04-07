@@ -1,0 +1,41 @@
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #34495e; /* Darker blue-gray for navbar */
+  padding: 1rem 2rem;
+}
+
+.navbar .logo h2 {
+  color: #ecf0f1; /* Light gray for logo */
+  font-size: 1.8rem;
+}
+
+.navbar-links a {
+  color: #ecf0f1; /* Light gray for links */
+  margin: 0 1rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: black; /* Teal color on hover */
+}
+.navbar-links .logout-button{
+  cursor: pointer;
+}
+.navbar-links button{
+  color: white;
+  border-radius: 0px;
+  background-color: #34495e;
+}
+.navbar-links button:hover{
+  color: red;
+  /* font-size: 15px; */
+  cursor: pointer;
+  background-color: black;
+  /* padding: 3px; */
+}

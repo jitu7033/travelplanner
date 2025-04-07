@@ -1,113 +1,205 @@
-/* src/HomePage.css */
+src/HomePage.css
 
 /* General styles */
+body {
+  width: 100%;
+  margin: 0;
+  background-color: #f4f6f9; /* Light background for the entire page */
+}
+
 .home-container {
-    font-family: Arial, sans-serif;
-    color: #333;
-    margin: 0;
-    padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #34495e; /* Darker blue-gray for navbar */
+  padding: 1rem 2rem;
+}
+
+.navbar .logo h2 {
+  color: #ecf0f1; /* Light gray for logo */
+  font-size: 1.8rem;
+}
+
+.navbar-links a {
+  color: #ecf0f1; /* Light gray for links */
+  margin: 0 1rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #1abc9c; /* Teal color on hover */
+}
+
+/* Hero Section */
+.hero-section {
+  background: url('https://images.unsplash.com/photo-1506748686218-35b0937f9c30') center/cover;
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  background-color: #1abc9c; /* Teal button */
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s; /* Added transform for hover */
+}
+
+.cta-button:hover {
+  background-color: #16a085; /* Darker teal on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Main Content */
+.main-content {
+  padding: 3rem 2rem;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+
+.feature {
+  width: 30%;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #ffffff; /* White background for features */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  color: #3498db; /* Blue for feature headings */
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #555; /* Dark gray for feature text */
+}
+
+/* Responsive Design */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+  body {
+    padding-left: 0;
   }
-  
-  h1, h2, h3 {
-    margin: 0.5rem 0;
-  }
-  
-  /* Navbar */
+
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2c3e50;
-    padding: 1rem 2rem;
-  }
-  
-  .navbar .logo h2 {
-    color: #ecf0f1;
-    font-size: 1.8rem;
-  }
-  
-  .navbar-links a {
-    color: #ecf0f1;
-    margin: 0 1rem;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-links a:hover {
-    color: #3498db;
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    background: url('https://images.unsplash.com/photo-1506748686218-35b0937f9c30') center/cover;
-    color: white;
+    flex-direction: column;
     text-align: center;
-    padding: 4rem 2rem;
   }
-  
+
+  .navbar-links a {
+    margin: 0.5rem 0;
+    padding: 10px;
+  }
+
   .hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
   }
-  
+
   .hero-section p {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature {
+    width: 80%;
     margin-bottom: 2rem;
   }
-  
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  body {
+    padding-left: 0;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 0.9rem;
+  }
+
   .cta-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
-  
-  .cta-button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Main Content */
-  .main-content {
-    padding: 3rem 2rem;
-  }
-  
-  .intro {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  
-  .features {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 3rem;
-  }
-  
-  .feature {
-    width: 30%;
-    padding: 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    background-color: #f9f9f9;
-    transition: transform 0.3s ease;
-  }
-  
-  .feature:hover {
-    transform: translateY(-5px);
-  }
-  
-  .feature h3 {
-    font-size: 1.5rem;
-    color: #3498db;
-  }
-  
-  .feature p {
+
+  .navbar-links a {
     font-size: 1rem;
-    color: #555;
   }
-  
+
+  .feature {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .feature h3 {
+    font-size: 1.3rem;
+  }
+
+  .feature p {
+    font-size: 0.9rem;
+  }
+}

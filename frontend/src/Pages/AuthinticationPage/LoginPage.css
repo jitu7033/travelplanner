@@ -1,0 +1,112 @@
+/* src/LoginPage.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e9ecef; /* Light gray background */
+  margin: 0;
+  padding: 0;
+}
+
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signin-card {
+  background-color: #ffffff; /* White background for the card */
+  padding: 30px;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  width: 90%;
+  max-width: 400px; /* Maximum width for larger screens */
+}
+
+.signin-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Space between form groups */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555; /* Medium gray for labels */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 0px solid #ced4da; /*Light gray border*/
+  border-radius: 6px; /* Rounded corners */
+  font-size: 14px;
+  transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.form-group input:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+.signin-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 6px; /* Rounded corners */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.signin-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 15px;
+  color: #777; /* Light gray for the link text */
+}
+
+.signup-link a {
+  color: #007bff; /* Blue link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.signup-link a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Media Queries */
+
+/* For tablets and larger screens */
+@media (min-width: 600px) {
+  .signin-card {
+    width: 400px; /* Increase width for larger screens */
+  }
+}
+
+/* For desktops and larger screens */
+@media (min-width: 900px) {
+  .signin-card {
+    width: 500px; /* Further increase width for larger screens */
+  }
+}
+
+/* For very small screens (like mobile phones) */
+@media (max-width: 400px) {
+  .signin-card {
+    padding: 20px; /* Reduce padding for smaller screens */
+  }
+
+  .signin-button {
+    font-size: 14px; /* Slightly reduce button font size */
+  }
+}

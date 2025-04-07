@@ -1,0 +1,377 @@
+/* styles/MenuPage.css */
+
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.menu-page-container {
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  flex-wrap: nowrap; /* Keep items in a row */
+}
+
+.logo h2 {
+  font-size: 1.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar-links a:hover {
+  color: #ddd;
+}
+
+/* Menu Container */
+.menu-container {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.menu-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Menu Items */
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 3-4 items per row */
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menu-item {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+}
+
+.item-name {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.item-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.item-price {
+  font-size: 0.9rem;
+  color: #f39c12; /* Matching hotel rating color */
+  margin-bottom: 1rem;
+}
+
+.no-menu {
+  font-size: 1rem;
+  color: #666;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+/* Rating Form */
+.rating-container {
+  padding: 2rem 1rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.rating-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.rating-input,
+.rating-select,
+.rating-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.rating-input:focus,
+.rating-select:focus,
+.rating-textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.rating-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-rating-button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.submit-rating-button:hover {
+  background-color: #0056b3;
+}
+
+/* Ratings Display - Full Width at Bottom */
+.ratings-display {
+  width: 100%;
+  padding: 2rem 1rem;
+  background-color: #333;
+  color: white;
+}
+
+.ratings-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.ratings-display .menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 3-4 items per row */
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ratings-display .menu-item {
+  background-color: #444; /* Slightly lighter than background */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.ratings-display .menu-item:hover {
+  transform: translateY(-5px);
+}
+
+.ratings-display .item-name {
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.ratings-display .item-description {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin-bottom: 0.5rem;
+}
+
+.ratings-display .item-price {
+  font-size: 0.9rem;
+  color: #f39c12;
+  margin-bottom: 1rem;
+}
+
+.no-ratings {
+  font-size: 1rem;
+  color: #ddd;
+  margin: 2rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* Back Button */
+.back-button {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .logo h2 {
+    font-size: 1.2rem;
+  }
+
+  .navbar-links {
+    gap: 0.75rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.9rem;
+  }
+
+  .menu-container,
+  .rating-container,
+  .ratings-display {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .menu-title,
+  .rating-title,
+  .ratings-title {
+    font-size: 1.5rem;
+  }
+
+  .menu-items,
+  .ratings-display .menu-items {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .item-name,
+  .ratings-display .item-name {
+    font-size: 1.1rem;
+  }
+
+  .item-description,
+  .item-price,
+  .ratings-display .item-description,
+  .ratings-display .item-price {
+    font-size: 0.85rem;
+  }
+
+  .rating-input,
+  .rating-select,
+  .rating-textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-rating-button,
+  .back-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.3rem;
+  }
+
+  .logo h2 {
+    font-size: 1rem;
+  }
+
+  .navbar-links {
+    gap: 0.5rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.8rem;
+  }
+
+  .menu-container,
+  .rating-container,
+  .ratings-display {
+    padding: 1rem;
+  }
+
+  .menu-title,
+  .rating-title,
+  .ratings-title {
+    font-size: 1.25rem;
+  }
+
+  .menu-items,
+  .ratings-display .menu-items {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+    gap: 0.75rem;
+  }
+
+  .item-name,
+  .ratings-display .item-name {
+    font-size: 1rem;
+  }
+
+  .item-description,
+  .item-price,
+  .ratings-display .item-description,
+  .ratings-display .item-price {
+    font-size: 0.8rem;
+  }
+
+  .rating-input,
+  .rating-select,
+  .rating-textarea {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .submit-rating-button,
+  .back-button {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}

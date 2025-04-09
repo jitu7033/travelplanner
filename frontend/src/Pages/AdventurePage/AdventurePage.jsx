@@ -91,7 +91,7 @@ const AdventurePage = () => {
   // Load Google Maps API
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `https://maps.google.com/maps/api/js?key=AIzaSyAD1twoTjX6h3wlKkfR8QgWheVz7quER68&libraries=places,maps`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&libraries=places,maps,geocoding`;
     script.async = true;
     script.onload = () => {
       console.log("Google Maps API loaded successfully");
